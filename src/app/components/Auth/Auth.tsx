@@ -58,7 +58,7 @@ const Auth: FC = () => {
                   className="w-full"
                   value={credentials.email}
                   onChange={setCredentialsHandler}
-                  type="text"
+                  type="email"
                   name="email"
                   id="email"
                   label="Email"
