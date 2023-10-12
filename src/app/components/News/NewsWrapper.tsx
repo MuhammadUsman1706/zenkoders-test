@@ -1,5 +1,5 @@
 "use client";
-import React, { FC, Fragment, useState } from "react";
+import { FC, Fragment, useState } from "react";
 import NewsCard from "./NewsCard";
 import NewsDetailModal from "./NewsDetailModal";
 

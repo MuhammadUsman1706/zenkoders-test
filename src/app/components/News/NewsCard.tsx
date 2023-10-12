@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
 interface NewsCardProps {
   news: NewsArticleModel;
@@ -7,15 +7,15 @@ interface NewsCardProps {
 
 const NewsCard: FC<NewsCardProps> = ({ news, showDetail }) => {
   return (
-    <div className="flex gap-x-4 max-w-[45%] max-lg:max-w-[100%]">
-      <div className="w-[40%]">
+    <div className="flex shadow-[rgba(0,0,0,0.24)_0px_3px_8px] rounded-lg p-4 gap-x-4 max-w-[45%] max-[950px]:max-w-[100%] max-[426px]:flex-col gap-y-6">
+      <div className="w-[40%] max-[426px]:w-[100%]">
         <img
           className="w-[100%] h-[100%] max-h-[250px] rounded-2xl object-cover"
           src={news.urlToImage}
           alt={news.title}
         />
       </div>
-      <div className="w-[60%] max-lg:max-w-[100%] flex flex-col justify-between">
+      <div className="w-[60%] max-[426px]:w-[100%] max-[426px]:gap-y-3 max-lg:max-w-[100%] flex flex-col justify-between">
         <h3 className="text-xs font-bold p-2 text-red-500 bg-red-200 w-max rounded-3xl">
           {news?.source?.name}
         </h3>

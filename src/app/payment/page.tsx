@@ -1,9 +1,9 @@
-import React from "react";
+import { FC } from "react";
 import PaymentCards from "../components/Payment/Payment";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-const PaymentPage = () => {
+const PaymentPage: FC = () => {
   const uid = cookies().get("session")?.value;
   if (!uid) redirect("/");
 
