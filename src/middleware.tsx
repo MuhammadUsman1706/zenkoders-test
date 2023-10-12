@@ -7,12 +7,10 @@ export async function middleware(request: NextRequest, response: NextResponse) {
 
   // Return to /login if don't have a session
   if (!session) {
-    return NextResponse.redirect(new URL("/login", request.url));
+    return NextResponse.redirect(new URL("/", request.url));
   }
 
   const stripeCustomer = request.cookies.get("stripe");
-
-  // const customer = await stripe.customers.retrieve(stripeCustomer?.value || "");
 
   const subscriptions = await stripe.subscriptions.list({
     customer: stripeCustomer?.value,

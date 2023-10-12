@@ -1,5 +1,3 @@
-// import { customInitApp } from "@/lib/firebase-admin-config";
-// import { auth as adminAuth } from "firebase-admin";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import {
@@ -48,10 +46,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
     cookies().set(stripeOptions);
 
     return NextResponse.json({ message: "success" }, { status: 201 });
-  } catch (err) {
-    return NextResponse.json(
-      { message: "User already exists" },
-      { status: 500 }
-    );
+  } catch (err: any) {
+    return NextResponse.json({ message: err.code }, { status: 500 });
   }
 }

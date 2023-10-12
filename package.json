@@ -11,15 +11,15 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.13",
     "@mui/material": "^5.14.12",
     "@stripe/stripe-js": "^2.1.7",
     "axios": "^1.5.1",
+    "clsx": "^2.0.0",
     "firebase": "^10.4.0",
-    "firebase-admin": "^11.11.0",
     "next": "^13.5.4",
     "react": "^18",
     "react-dom": "^18",
-    "react-toastify": "^8.0.0",
     "stripe": "^13.9.0"
   },
   "devDependencies": {

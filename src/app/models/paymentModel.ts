@@ -1,8 +1,9 @@
 export interface CheckoutSubscriptionBody {
-  plan: string;
-  planDescription: string;
-  amount: number;
-  interval: "month" | "year";
-  customerId?: string;
   priceId: string;
 }
+
+export const paymentPlans = {
+  1: "price_1NzlRtBRqMpZdbFQRagO5buG",
+  2: "price_1NznLuBRqMpZdbFQQpp9afNX",
+  3: "price_1NznLuBRqMpZdbFQQpp9afNX",
+};

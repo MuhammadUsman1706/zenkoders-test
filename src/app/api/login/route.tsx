@@ -1,13 +1,7 @@
-import { auth as adminAuth } from "firebase-admin";
 import { auth } from "@/lib/firebase-config";
-// import { customInitApp } from "@/lib/firebase-admin-config";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { signInWithEmailAndPassword } from "firebase/auth";
-
-// Init the Firebase SDK every time the server is called
-// customInitApp();
-// firebaseInitializer();
 
 export async function POST(request: NextRequest, response: NextResponse) {
   try {
@@ -17,7 +11,8 @@ export async function POST(request: NextRequest, response: NextResponse) {
     } = await signInWithEmailAndPassword(auth, user.email, user.password);
 
     const expiresIn = 60 * 60 * 24 * 5 * 1000;
-    const options = {
+
+    const uidOptions = {
       name: "session",
       value: uid,
       maxAge: expiresIn,
@@ -25,8 +20,16 @@ export async function POST(request: NextRequest, response: NextResponse) {
       // secure: true,
     };
 
-    cookies().set(options);
-    // console.log(cookies().get(options));
+    const stripeOptions = {
+      name: "stripe",
+      value: displayName as string,
+      maxAge: expiresIn,
+      httpOnly: true,
+      // secure: true,
+    };
+
+    cookies().set(uidOptions);
+    cookies().set(stripeOptions);
 
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (err: any) {
@@ -40,15 +43,8 @@ export async function POST(request: NextRequest, response: NextResponse) {
 export async function GET(request: NextRequest) {
   const session = cookies().get("session")?.value || "";
 
-  //Validate if the cookie exist in the request
+  // Validate if the cookie exist in the request
   if (!session) {
-    return NextResponse.json({ isLogged: false }, { status: 401 });
-  }
-
-  //Use Firebase Admin to validate the session cookie
-  const decodedClaims = await adminAuth().verifySessionCookie(session, true);
-
-  if (!decodedClaims) {
     return NextResponse.json({ isLogged: false }, { status: 401 });
   }
 

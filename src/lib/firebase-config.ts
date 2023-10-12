@@ -3,8 +3,6 @@ import { getApps, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 
-var serviceAccount = require("../../zenkoders-test-firebase-adminsdk-4j2tw-2f5a9673c3.json");
-
 const firebaseConfig = {
   apiKey: "AIzaSyBE4AREERlqbfqqfNeGG4DNo-8MHZtLQ9M",
   authDomain: "zenkoders-test.firebaseapp.com",
