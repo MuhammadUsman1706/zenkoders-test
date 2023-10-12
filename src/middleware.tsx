@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { stripe } from "@/lib/stripe";
+import { loadStripe } from "@stripe/stripe-js";
+
+const STRIPE_PK = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!;
 
 export async function middleware(request: NextRequest, response: NextResponse) {
   try {
@@ -12,8 +15,8 @@ export async function middleware(request: NextRequest, response: NextResponse) {
     }
 
     const stripeCustomer = request.cookies.get("stripe");
-
-    const subscriptions = await stripe.subscriptions.list({
+    await loadStripe(STRIPE_PK);
+    const subscriptions = await stripe?.subscriptions.list({
       customer: stripeCustomer?.value,
       limit: 3,
     });
